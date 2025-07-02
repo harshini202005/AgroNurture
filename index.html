@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgroNurture - Smart Farming Solution</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Chart.js for Dashboard Visualization -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database.js"></script>
+</head>
+<body>
+  <header>
+    <h1>AgroNurture</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Google Translate Element -->
+    <div id="google_translate_element"></div>
+  </header>
+
+  <section id="home">
+    <h1>Welcome to AgroNurture</h1>
+    <p>Empowering farmers with data-driven insights to improve crop yields and ensure sustainable farming practices.</p>
+
+    <h2>What We Offer</h2>
+    <div class="features1">
+      <div class="feature-box1">
+        <h3>Smart Fertilizer Recommendations</h3>
+        <p>Get optimal fertilizer recommendations based on your soil, crop, and weather conditions.</p>
+      </div>
+      <div class="feature-box1">
+        <h3>Soil Health Monitoring</h3>
+        <p>Track soil health parameters like pH, nitrogen, phosphorus, and potassium content.</p>
+      </div>
+      <div class="feature-box1">
+        <h3>Weather Forecast Integration</h3>
+        <p>Receive real-time weather updates for your farm's location and plan accordingly.</p>
+      </div>
+      <div class="feature-box1">
+        <h3>Community Engagement</h3>
+        <p>Join a vibrant community of farmers and experts to share insights and advice.</p>
+      </div>
+    </div>
+
+    <ul>
+      <h2>Why to Choose AgroNurture?</h2>
+      <li>Data-Driven Farming for smarter decisions.</li>
+      <li>Sustainable practices that reduce waste and protect soil health.</li>
+      <li>Accessible platform to manage your farm anytime, anywhere.</li>
+    </ul>
+  </section>
+
+  <section id="features">
+    <h2>Features</h2>
+    <div class="features-container">
+      <div class="feature-box">
+        <a href="soilhealth.html"><img src="soilhealth.png" alt="" height="75%" width="75%">Soil Health Monitoring</a>
+      </div>
+      <div class="feature-box">
+        <a href="soilfertility.html"><img src="fertilizer.png" alt="" height="75%" width="75%">Fertilizer Recommendations</a>
+      </div>
+      <div class="feature-box">
+        <a href="diseasepage.html"><img src="disease.png" alt="" height="75%" width="75%">Disease Prediction</a>
+      </div>
+      <div class="feature-box">
+        <a href="community.html"><img src="chat.jpg" alt="" height="75%" width="75%">Community Chat & Support</a>
+      </div>
+      <div class="feature-box">
+        <a href="chatbot.html"><img src="chatbot.png" alt="" height="75%" width="75%">Chatbot</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="dashboard">
+    <h2>Dashboard</h2>
+    <div class="dashboard-container">
+      <div>
+        <h3>Soil pH Levels</h3>
+        <canvas id="soilPHChart" width="400" height="200" style="border: 4px solid black;"></canvas>
+      </div>
+      <div>
+        <h3>Soil Nutrient Content (N, P, K)</h3>
+        <canvas id="soilNutrientChart" width="400" height="200" style="border: 4px solid black;"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Join our community of farmers and agricultural experts for tips, discussions, and chatbot support.</p><br>
+    <p>Mail: <a href="mailto:agronuture@gmail.com">agronuture@gmail.com</a></p>
+    <p>Phone: <a href="tel:987654329">987654329</a></p>
+    <br><br>
+  </section>
+
+  <footer>
+    <p>AgroNurture &copy; 2024</p>
+  </footer>
+
+  <!-- Google Translate Init Script -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,ta,te,bn,gu,ml,kn,mr,pa,ur',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+
+  <!-- Google Translate Script -->
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <!-- Chart Update Script -->
+  <script>
+    function updateSoilPHChart() {
+      const ctx = document.getElementById('soilPHChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Sample 1', 'Sample 2', 'Sample 3'],
+          datasets: [{
+            label: 'Soil pH Level',
+            data: [6.5, 6.9, 8.9],
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    }
+
+    function updateSoilNutrientChart() {
+      const ctx = document.getElementById('soilNutrientChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Nitrogen', 'Potassium', 'Phosphorus'],
+          datasets: [{
+            label: 'Soil Nutrients (ppm)',
+            data: [40, 30, 20],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    }
+
+    window.onload = function () {
+      updateSoilPHChart();
+      updateSoilNutrientChart();
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AgroNurture - Disease Prediction</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    header, footer {
+      background-color: #2d882d;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      position: relative;
+    }
+    header a {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background-color: white;
+      color: #2d882d;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    header a:hover {
+      background-color: #e6ffe6;
+      color: black;
+    }
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #2d882d;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #2d882d;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .output {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    #google_translate_element {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+    }
+  </style>
+
+  <!-- Google Translate API -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,ta,te,ml,kn,bn,gu,mr,pa,ur',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body>
+
+<header>
+  <div id="google_translate_element"></div>
+  <h1>AgroNurture - Disease Prediction</h1>
+  <a href="index.html">🏠 Home</a>
+</header>
+
+<div class="container">
+  <h2>Predict Plant Disease</h2>
+
+  <label for="input-type">Choose Input Method</label>
+  <select id="input-type" onchange="toggleInput()">
+    <option value="manual">Manual Input</option>
+    <option value="image">Image Scan (Not Available)</option>
+  </select>
+
+  <div id="manual-input-section">
+    <label for="symptoms">Observed Symptoms</label>
+    <textarea id="symptoms" placeholder="e.g., yellow leaves, spots, stunted growth..."></textarea>
+
+    <label for="plant-type">Plant Type</label>
+    <input type="text" id="plant-type" placeholder="e.g., Tomato, Wheat, Rice">
+
+    <label for="growth-condition">Growth Condition</label>
+    <input type="text" id="growth-condition" placeholder="e.g., dry soil, humid weather">
+  </div>
+
+  <button onclick="predictDisease()">Predict Disease</button>
+
+  <div class="output" id="prediction-result"></div>
+</div>
+
+<footer>
+  <p>AgroNurture &copy; 2025</p>
+</footer>
+
+<script>
+function toggleInput() {
+  const inputType = document.getElementById('input-type').value;
+  const manualInput = document.getElementById('manual-input-section');
+  const result = document.getElementById('prediction-result');
+  if (inputType === 'manual') {
+    manualInput.style.display = 'block';
+    result.innerHTML = "";
+  } else {
+    manualInput.style.display = 'none';
+    result.innerHTML = "⚠️ Image-based prediction not available in offline mode.";
+  }
+}
+
+function predictDisease() {
+  const symptoms = document.getElementById('symptoms').value.toLowerCase();
+  const plantType = document.getElementById('plant-type').value.toLowerCase();
+  const condition = document.getElementById('growth-condition').value.toLowerCase();
+  const output = document.getElementById('prediction-result');
+
+  if (!symptoms || !plantType || !condition) {
+    output.innerHTML = "⚠️ Please fill all fields.";
+    return;
+  }
+
+  let prediction = "❓ Unable to determine disease. Try giving more specific symptoms.";
+
+  if (symptoms.includes("yellow") && symptoms.includes("leaf")) {
+    prediction = "🌿 Disease: <strong>Nitrogen Deficiency</strong><br>Advice: Apply nitrogen-rich fertilizer and monitor watering.";
+  } else if (symptoms.includes("spots") && symptoms.includes("brown")) {
+    prediction = "🍂 Disease: <strong>Leaf Spot</strong><br>Advice: Remove infected leaves and use organic fungicide.";
+  } else if (symptoms.includes("wilt")) {
+    prediction = "🌾 Disease: <strong>Bacterial Wilt</strong><br>Advice: Improve drainage and avoid overwatering.";
+  } else if (symptoms.includes("mold") || symptoms.includes("fungus")) {
+    prediction = "🍄 Disease: <strong>Fungal Infection</strong><br>Advice: Apply antifungal spray and reduce humidity.";
+  }
+
+  output.innerHTML = prediction;
+}
+</script>
+
+</body>
+</html>

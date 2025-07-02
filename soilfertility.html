@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AgroNurture - Fertilizer Recommender</title>
+  <link rel="stylesheet" href="styles1.css" />
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+  <!-- Leaflet Libraries -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.geometryutil/0.10.0/leaflet.geometryutil.min.js"></script>
+
+  <!-- Google Translate -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,ta,te,bn,gu,ml,kn,mr,pa,ur',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body>
+  <header>
+    <h1>AgroNurture: Fertilizer Recommender and Crop Yield Monitoring</h1>
+    <a href="index.html" id="back">Home</a>
+    <!-- Translation Dropdown -->
+    <div id="google_translate_element" style="float: right; margin-top: -40px;"></div>
+  </header>
+
+  <div id="fertilizer-recommendation" style="margin-top: 15px;"></div>
+
+  <div class="container">
+    <div id="map"></div>
+
+    <div class="info-panel">
+      <h2>Welcome, Farmer!</h2>
+      <p>Drag and select your farm area on the map to analyze soil and weather data.</p>
+      <p>Farm size will be automatically calculated.</p>
+
+      <div class="info">
+        <div id="farm-size"></div>
+        <div id="temp"></div>
+        <div id="hum"></div>
+        <div id="cloud"></div>
+        <div id="rain"></div>
+
+        <table>
+          <tr>
+            <td>Soil Type:</td>
+            <td><input type="text" name="soil-type" id="soil-type" /></td>
+          </tr>
+          <tr>
+            <td>Soil pH:</td>
+            <td><input type="number" name="ph-value" id="ph-value" /></td>
+          </tr>
+          <tr>
+            <td>Soil Nitrogen:</td>
+            <td><input type="number" name="nitrogen" id="nitrogen" /></td>
+          </tr>
+          <tr>
+            <td>Soil Potassium:</td>
+            <td><input type="number" name="potassium" id="potassium" /></td>
+          </tr>
+          <tr>
+            <td>Soil Phosphorus:</td>
+            <td><input type="number" name="phosphorus" id="phosphorus" /></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><button id="analyze-btn">Analyze Soil and Weather</button></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 AgroNurture. All Rights Reserved.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
