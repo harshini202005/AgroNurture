@@ -27,5 +27,5 @@ AgroNurture is a smart fertilizer recommendation system that helps farmers optim
 ![Home Page](Images/1.png)
 ![Dashboard](Images/2.png)
 ![Soil Health](Images/3.png)
-!(Images/4.png)
+![Soil](Images/4.png)
 ![Fertilizer recommendtion](Images/5.png)
